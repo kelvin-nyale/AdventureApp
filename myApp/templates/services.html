@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Packages</title>
+    <title>services</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -16,35 +16,35 @@
         </div>
         <div class="nav-links">
           <ul>
+            <li><a href="{% url 'users' %}">Users</a></li>
             <li><a href="{% url 'services' %}">Services</a></li>
             <li><a href="{% url 'activities' %}">Activities</a></li>
-            <li><a href="{% url 'users' %}">Users</a></li>
+            <li><a href="{% url 'packages' %}">Packages</a></li>
             <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
           </ul>
         </div>
       </div><br>
+    
     <div class="content">
         <div class="table">
             <table>
                 <thead>
                     <tr>
-                        <th>Package ID</th>
-                        <th>Package Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
+                        <th>ID</th>
+                        <th>Service_ID</th>
+                        <th>Service_Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for package in packages %}
+                    {% for service in services %}
                     <tr>
-                        <td>{{ package.package_id }}</td>
-                        <td>{{ package.package_name }}</td>
-                        <td>{{ package.description }}</td>
-                        <td>{{ package.price }}</td>
+                        <td>{{ service.id }}</td>
+                        <td>{{ service.service_id }}</td>
+                        <td>{{ service.service_name }}</td>
                         <td>
-                            <a href="{% url 'update_package' package.package_id %}" class="update">Update</a>
-                            <a href="{% url 'delete_package' package.package_id %}" class="delete">Delete</a>
+                            <a href="{% url 'update_service' service.id %}" class="update">Update</a>
+                            <a href="{% url 'delete_service' service.id %}" class="delete">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -53,6 +53,6 @@
 
         </div>
     </div><br><br>
-    <a href="{% url 'add_package' %}" class="adding">Add New Package</a><br><br><br><body>
+    <a href="{% url 'add_service' %}" class="adding">Add New Service</a><br><br><br>
 </body>
 </html>

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addservice</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+    <style>
+        .messages {
+            list-style-type: none;
+            padding: 10px;
+            margin: 0;
+        }
+        .messages li {
+            background-color: #FF4500; /* Orange-Red */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <img src="" alt="Logo Img">
+          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="">123</a></li>
+            <li><a href="">Log Out</a></li>
+            <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+          </ul>
+        </div>
+      </div><br>
+    <div class="form-box">
+        <h2>Add New Service</h2>
+        <form action="{% url 'add_service' %}" method="POST">
+            {% csrf_token %}
+            <label for="service_id">Service Id:</label>
+            <input type="text" id="service_id" name="service_id" required>
+            <br><br>
+            <label for="service_name">Service Name:</label>
+            <input type="text" id="service_name" name="service_name" required>
+            <br><br>
+            <input type="submit" value="Save in Services">
+            <a href="{% url 'services' %}">Cancel</a>
+        </form><br><br>
+<!-- {#        <div id="errorMessages"></div>#}
+{#        <div id="successMessage"></div>#} -->
+    </div>
+    <!-- <div class="footer">
+        &copy; 2024 Yalen Commercial Adventures. All rights reserved.
+    </div> -->
+</body>
+</html>

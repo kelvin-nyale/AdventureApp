@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from myApp.models import Users, Packages, Activities
+from myApp.models import Users, Packages, Activities, Services
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import make_password
 from decimal import Decimal, InvalidOperation
@@ -264,11 +264,60 @@ def update_activity(request, id):
         activity.activity_id = request.POST.get('activity_id', activity.activity_id)
         activity.name = request.POST.get('name', activity.name)
         activity.save()
-        
+
         messages.success(request, "Activity updated successfully!")
         return redirect('activities')
 
     return render(request, 'update_activity.html', {'activity': activity})
 
-def delete_activity(request):
-    return render(request, 'delete_activity.html')
+def delete_activity(request, id):
+    activity = get_object_or_404(Activities, id=id)
+    
+    if request.method == 'POST':
+        activity.delete()
+        messages.success(request, 'Activity deleted successfully')
+        return redirect('activities')
+    return render(request, 'delete_activity.html', {'activity': activity})
+
+def add_service(request):
+    if request.method == 'POST':
+        service_id = request.POST.get('service_id')
+        service_name = request.POST.get('service_name')
+
+        if Services.objects.filter(service_name=service_name).exists():
+            messages.error(request, "Service Already Exists!")
+            return redirect('services')
+        
+        service = Services.objects.create(
+            service_id=service_id,
+            service_name=service_name
+        )
+        messages.success(request, f"{service.service_name} added successfully!")
+        return redirect('services')
+
+    return render(request, 'add_service.html')
+
+def services(request):
+    services = Services.objects.all()
+    return render(request, 'services.html', {'services': services})
+
+def update_service(request, id):
+    service = get_object_or_404(Services, id=id)
+
+    if request.method == 'POST':
+        service_id = request.POST.get('service_id', service.service_id)
+        service_name = request.POST.get('service_name', service.service_name)
+        service.save()
+
+        messages.success(request, "Service updated")
+        return redirect('services')
+    return render(request, 'update_service.html', {'service': service})
+
+def delete_service(request, id):
+    service = get_object_or_404(Services, id=id)
+    if request.method == 'POST':
+        service.delete()
+
+        messages.success(request, "Service deleted")
+        return redirect('services')
+    return render(request, 'delete_service.html', {'service': service})

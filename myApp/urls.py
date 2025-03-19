@@ -36,7 +36,12 @@ urlpatterns = [
     path('activities/', views.activities, name='activities'),
     path('addactivity/', views.add_activity, name='add_activity'),
     path('updateactivity/<int:id>/', views.update_activity, name='update_activity'),
-    path('deleteactivity/<int:id>/', views.delete_activity, name='delete_activity')
+    path('deleteactivity/<int:id>/', views.delete_activity, name='delete_activity'),
+
+    path('services/', views.services, name='services'),
+    path('addservice/', views.add_service, name='add_service'),
+    path('updateservice/<int:id>/', views.update_service, name='update_service'),
+    path('deleteservice/<int:id>/', views.delete_service, name='delete_service')
 
 
     # path(r'^static/(?P<path>.*)$', server, {'document_root': settings.STATIC_ROOT})

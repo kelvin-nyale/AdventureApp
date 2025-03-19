@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delete activity</title>
+</head>
+<body>
+    <h1>Confirm before you delete</h1>
+
+    <form action="{% url 'delete_activity' activity.id %}" method="post">
+        {% csrf_token %} 
+        <input type="hidden" name="id" value="{{ activity.id }}">
+        <button type="submit">Delete this Activity</button>
+        <a href="{% url 'activities' %}">Cancel</a>
+    </form>
+</body>
+</html>

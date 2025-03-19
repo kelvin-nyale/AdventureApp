@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update service</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <img src="" alt="Logo Img">
+          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="">123</a></li>
+            <li><a href="">Log Out</a></li>
+            <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+          </ul>
+        </div>
+      </div><br>
+    <h1>Update Service</h1>
+    <form method="POST" action="{% url 'update_service' service.id %}">
+        {% csrf_token %}
+        <input type="text" name="service_id" value="{{ service.service_id }}" required><br><br>
+        <input type="text" name="service_name" value="{{ service.service_name }}" required><br><br>
+        <button type="submit">Update Service</button>
+    </form>
+    
+</body>
+</html>
