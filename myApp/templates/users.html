@@ -1,0 +1,60 @@
+
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>users</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <img src="" alt="Logo Img">
+          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="{% url 'activities' %}">Activities</a></li>
+            <li><a href="{% url 'packages' %}">Packages</a></li>
+            <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+          </ul>
+        </div>
+      </div><br>
+    
+    <div class="content">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>
+                            <a href="{% url 'update_user' user.id %}" class="update">Update</a>
+                            <a href="{% url 'delete_user' user.id %}" class="delete">Delete</a>
+
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div><br><br>
+    <a href="{% url 'add_user' %}" class="adding">Add New User</a><br><br><br><body>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update package</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <img src="" alt="Logo Img">
+          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="">123</a></li>
+            <li><a href="">Log Out</a></li>
+            <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+          </ul>
+        </div>
+      </div><br>
+    <h1>Update Activity</h1>
+    <form method="POST" action="{% url 'update_activity' activity.id %}">
+        {% csrf_token %}
+        <input type="text" name="activity_id" value="{{ activity.activity_id }}" required><br><br>
+        <input type="text" name="name" value="{{ activity.name }}" required><br><br>
+        <button type="submit">Update Activity</button>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delete user</title>
+</head>
+<body>
+    <h1>Confirm before you delete</h1>
+
+    <form action="{% url 'delete_user' user.id %}" method="post">
+        {% csrf_token %} 
+        <input type="hidden" name="userId" value="{{ user.id }}">
+        <button type="submit">Delete this User</button>
+        <a href="{% url 'users' %}">Cancel</a>
+    </form>
+</body>
+</html>

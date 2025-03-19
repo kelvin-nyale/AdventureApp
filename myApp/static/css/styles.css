@@ -1,0 +1,147 @@
+body{
+    background: rgb(2, 3, 39);
+    color: #fff;
+}
+
+.body-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15px;
+    background-color: #333;
+    height: 90px;
+    width: 100%;
+    position: fixed;
+
+    .logo{
+        float: left;
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+        gap: 15px;
+
+        .logo-name span{
+            color: #ff0000;
+        }
+    }
+
+    .nav-links{
+        float: right;
+
+        ul{
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            padding: 20px;
+
+            li{
+                list-style-type: none;
+                
+
+                a{
+                    cursor: pointer;
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-top: 90px;
+
+    .sidebar{
+        height: 500px;
+        width: 25%;
+        border: #fff;
+        background-color: midnightblue;
+
+        a{
+            color: #fff;
+            text-decoration: none;
+            padding: 30px;
+        }
+    }
+    .main{
+        flex-direction: column;
+        gap: 20px;
+
+        .counter{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            float: left;
+            padding: 20px;
+
+            .count-users, .count-bookings{
+                height: 100px;
+                width: 200px;
+                border-radius: 2px;
+                
+            }
+            .count-users{
+                background-color: darkgoldenrod;
+            }
+            .count-bookings{
+                background-color: cadetblue;
+            }
+        }
+    }
+}
+
+/* USERS STYLINGS */
+
+.table{
+    padding-top: 100px;
+    padding: 20px;
+}
+.table table{
+    width: 90%;
+    padding: 20px;
+    /* border: #fff; */
+    border-collapse: collapse;
+
+    thead tr{
+        background-color: teal;
+        color: #fff;
+        height: 40px;
+        text-align: left;
+        
+        th{
+            padding-left: 10px;
+        }
+    }
+    tbody{
+        border-collapse: collapse;
+
+        td{
+            font-weight: bold;
+            padding: 10px;
+            /* display: flex; */
+            /* flex-direction: row; */
+            gap: 10px;
+
+            
+            a{
+                text-decoration: none;
+                color: #fff;
+            }
+            .update{
+                background-color: #00f;
+            }
+            .delete{
+                background-color: #f00;
+            }
+                
+        }
+    }
+}

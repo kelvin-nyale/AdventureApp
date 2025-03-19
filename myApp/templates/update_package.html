@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update package</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <img src="" alt="Logo Img">
+          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="">123</a></li>
+            <li><a href="">Log Out</a></li>
+            <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+          </ul>
+        </div>
+      </div><br>
+    <h1>Update Package</h1>
+    <form method="POST" action="{% url 'update_package' package.package_id %}">
+        {% csrf_token %}
+        <input type="text" name="package_id" value="{{ package.package_id }}" required><br><br>
+        <input type="text" name="package_name" value="{{ package.package_name }}" required><br><br>
+        <input type="text" name="description" value="{{ package.description }}" required><br><br>
+        <input type="number" name="price" value="{{ package.price }}" required><br><br>
+        <button type="submit">Update Package</button>
+    </form>
+    
+</body>
+</html>

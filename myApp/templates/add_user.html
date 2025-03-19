@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adduser</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+    <style>
+        .messages {
+            list-style-type: none;
+            padding: 10px;
+            margin: 0;
+        }
+        .messages li {
+            background-color: #FF4500; /* Orange-Red */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Add New Staff</h2>
+        <form action="{% url 'add_user' %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="username" required>
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+             <label for="role">User Role:</label>
+                <select name="role" id="role">
+                    <option value="waiter">Waiter</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="user">User</option>
+                    <option value="counter">Counter</option>
+                </select>
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br><br>
+            <input type="submit" value="Save in Users">
+            <a href="{% url 'users' %}">Cancel</a>
+        </form><br><br>
+<!-- {#        <div id="errorMessages"></div>#}
+{#        <div id="successMessage"></div>#} -->
+    </div>
+    <!-- <div class="footer">
+        &copy; 2024 Yalen Commercial Adventures. All rights reserved.
+    </div> -->
+</body>
+</html>

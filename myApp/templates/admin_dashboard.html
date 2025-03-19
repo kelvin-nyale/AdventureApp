@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+   <div class="body-content">
+      <div class="navbar">
+        <div class="logo">
+          <img src="" alt="Logo Img">
+          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="">123</a></li>
+            <li><a href="">Log Out</a></li>
+          </ul>
+        </div>
+      </div><br>
+      <div class="info">
+        <div class="sidebar">
+          <ul>
+            <li><a href="{% url 'users' %}">Users</a></li>
+            <a href="{% url 'packages' %}">Packages</a>
+            <a href="{% url 'activities' %}">Activities</a>
+          </ul><br>
+        </div>
+        <div class="main">
+          <div class="counter">
+            <div class="count-users">number of users</div>
+            <div class="count-bookings">number of bookings</div>
+          </div>
+          <div class="analytics"></div>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+</html>

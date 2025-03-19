@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <style>
+      .messages {
+          list-style-type: none;
+          padding: 10px;
+          margin: 0;
+      }
+      .messages li {
+          background: rgb(2, 3, 39);
+          color: white;
+          padding: 10px;
+          border-radius: 5px;
+          margin-bottom: 5px;
+      }
+  </style>
+  </head>
+  <body>
+    <div class="form-box">
+      {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="" method="POST">
+          {% csrf_token %}
+            <div class="form-group">
+                <label for="username">
+                    <input type="text" name="username" placeholder="Enter Username">
+                </label>
+            </div><br>
+            <!-- <div class="form-group">
+                <label for="email">
+                    <input type="email" name="email" placeholder="Enter Email">
+                </label>
+            </div><br> -->
+            <div class="form-group">
+                <label for="password">
+                    <input type="password" name="password" placeholder="Enter Password">
+                </label>
+            </div><br>
+            <button type="submit">Login</button><br><br>
+            Don't Have an Account? <a href="{% url 'register' %}">Register Now</a>
+        </form>
+    </div>
+    
+  </body>
+</html>

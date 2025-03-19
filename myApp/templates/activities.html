@@ -1,0 +1,56 @@
+
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <img src="" alt="Logo Img">
+          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="">123</a></li>
+            <li><a href="">Log Out</a></li>
+            <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+          </ul>
+        </div>
+      </div><br>
+    
+    <div class="content">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Activity ID</th>
+                        <th>Activity Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for activity in activities %}
+                    <tr>
+                        <td>{{ activity.id }}</td>
+                        <td>{{ activity.activity_id }}</td>
+                        <td>{{ activity.name }}</td>
+                        <td>
+                            <a href="{% url 'update_activity' activity.id %}" class="update">Update</a>
+                            <a href="{% url 'delete_activity' activity.id %}" class="delete">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div><br><br>
+    <a href="{% url 'add_activity' %}" class="adding">Add New Activity</a><br><br><br><body>
+</body>
+</html>

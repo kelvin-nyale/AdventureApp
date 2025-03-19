@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update user</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+</head>
+<body>
+    <h1>Update User</h1>
+    <form method="POST" action="{% url 'update_user' user.id %}">
+        {% csrf_token %}
+        <input type="text" name="username" value="{{ user.username }}" required><br><br>
+        <input type="email" name="email" value="{{ user.email }}" required><br><br>
+        <select name="role">
+            <option value="admin" {% if user.role == "admin" %}selected{% endif %}>Admin</option>
+            <option value="instructor" {% if user.role == "instructor" %}selected{% endif %}>Instructor</option>
+            <option value="user" {% if user.role == "user" %}selected{% endif %}>User</option>
+            <option value="waiter" {% if user.role == "waiter" %}selected{% endif %}>Waiter</option>
+            <option value="counter" {% if user.role == "counter" %}selected{% endif %}>Counter</option>
+        </select><br><br>
+        <button type="submit">Update User</button>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddActivity</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+    <style>
+        .messages {
+            list-style-type: none;
+            padding: 10px;
+            margin: 0;
+        }
+        .messages li {
+            background-color: #FF4500; /* Orange-Red */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Add New Activity</h2>
+        <form action="{% url 'add_activity' %}" method="POST">
+            {% csrf_token %}
+            <label for="activity_id">Activity ID:</label>
+            <input type="text" id="activity_id" name="activity_id" required>
+            <br><br>
+            <label for="name">Activity Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+            <input type="submit" value="Save in Activities">
+            <a href="{% url 'activities' %}">Cancel</a>
+        </form><br><br>
+<!-- {#        <div id="errorMessages"></div>#}
+{#        <div id="successMessage"></div>#} -->
+    </div>
+    <!-- <div class="footer">
+        &copy; 2024 Yalen Commercial Adventures. All rights reserved.
+    </div> -->
+</body>
+</html>
