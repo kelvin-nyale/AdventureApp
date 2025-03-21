@@ -38,10 +38,22 @@ urlpatterns = [
     path('updateactivity/<int:id>/', views.update_activity, name='update_activity'),
     path('deleteactivity/<int:id>/', views.delete_activity, name='delete_activity'),
 
+    #SERVICES URLS
     path('services/', views.services, name='services'),
     path('addservice/', views.add_service, name='add_service'),
     path('updateservice/<int:id>/', views.update_service, name='update_service'),
-    path('deleteservice/<int:id>/', views.delete_service, name='delete_service')
+    path('deleteservice/<int:id>/', views.delete_service, name='delete_service'),
+
+    path('rooms/', views.rooms_list, name='rooms'),
+    path('rooms/add/', views.add_room, name='add_room'),
+    path('rooms/update/<int:room_id>/', views.update_room, name='update_room'),
+    path('rooms/delete/<int:room_id>/', views.delete_room, name='delete_room'),
+
+    #BOOKINGS URLS
+    # path('book/', views.book_activity, name='book_activity'),
+    # path('my-bookings/', views.user_bookings, name='user_bookings'),
+    # path('admin-bookings/', views.bookings, name='bookings'),
+    # path('cancel-booking/<int:booking_id>/', views.cancel_booking, name='cancel_booking'),
 
 
     # path(r'^static/(?P<path>.*)$', server, {'document_root': settings.STATIC_ROOT})

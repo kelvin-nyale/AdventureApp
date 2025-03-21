@@ -36,3 +36,23 @@ class Services(models.Model):
 
     def __str__(self):
         return f"{self.service_id} - {self.service_name}"
+
+# class Bookings(models.Model):
+#     user = models.ForeignKey(Users, on_delete=models.CASCADE)
+#     activities = models.ManyToManyField(Activities, blank=True)
+#     package = models.ForeignKey(Packages, on_delete=models.SET_NULL, null=True, blank=True)
+#     pax = models.PositiveIntegerField()  # Number of people
+#     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+#     booking_date = models.DateField()  # Captures the user's selected date of visit
+
+#     def __str__(self):
+#         return f"Booking {self.id} by {self.user.username} on {self.booking_date}"
+
+class Rooms(models.Model):
+    room_id = models.AutoField(primary_key=True)
+    room_number = models.CharField(max_length=10, unique=True)
+    room_name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.room_id} - {self.room_number} - {self.room_name}"
+  

@@ -1,0 +1,43 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h2>All Bookings</h2>
+    {% if bookings %}
+        <table border="1">
+            <tr>
+                <th>Booking ID</th>
+                <th>User</th>
+                <th>Activity/Package</th>
+                <th>Pax</th>
+                <th>Total Amount</th>
+                <th>Booking Date</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.user.username }}</td>
+                <td>
+                    {% for activity in booking.activities.all %}
+                        {{ activity.name }} <br>
+                    {% endfor %}
+                    {% if booking.package %}
+                        {{ booking.package.name }}
+                    {% endif %}
+                </td>
+                <td>{{ booking.pax }}</td>
+                <td>${{ booking.total_amount }}</td>
+                <td>{{ booking.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No bookings found.</p>
+    {% endif %}
+</body>
+</html> -->

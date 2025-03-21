@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from myApp.models import Users, Packages, Activities, Services
+from myApp.models import Users, Packages, Activities, Services, Rooms #, Bookings
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import make_password
 from decimal import Decimal, InvalidOperation
@@ -321,3 +321,101 @@ def delete_service(request, id):
         messages.success(request, "Service deleted")
         return redirect('services')
     return render(request, 'delete_service.html', {'service': service})
+
+def add_room(request):
+    if request.method == 'POST':
+        room_number = request.POST.get('room_number')
+        room_name = request.POST.get('room_name')
+
+        if Rooms.objects.filter(room_number=room_number).exists():
+            messages.error(request, "This room already exists!")
+            return redirect('add_room')
+        
+        # Create and save the room
+        room = Rooms(room_number=room_number, room_name=room_name)
+        room.save()
+
+        messages.success(request, "Room added successfully!")
+        return redirect('rooms')
+
+    return render(request, 'add_room.html')
+
+def rooms_list(request):
+    rooms = Rooms.objects.all()
+    return render(request, 'rooms.html', {'rooms': rooms})
+
+def update_room(request, room_id):
+    room = get_object_or_404(Rooms, room_id=room_id)
+
+    if request.method == 'POST':
+        room.room_number = request.POST['room_number']
+        room.room_name = request.POST['room_name']
+        room.save()
+
+        messages.success(request, "Room updated successfully!")
+        return redirect('rooms')
+
+    return render(request, 'update_room.html', {'room': room})
+
+def delete_room(request, room_id):
+    room = get_object_or_404(Rooms, room_id=room_id)
+
+    if request.method == 'POST':
+        room.delete()
+        messages.success(request, "Room deleted successfully!")
+        return redirect('rooms')
+
+    return render(request, 'delete_room.html', {'room': room})
+
+# @login_required
+# def book_activity(request):
+#     if request.method == 'POST':
+#         user = request.user  # Associate booking with the logged-in user
+#         activities = request.POST.getlist('activities')  # Get selected activities
+#         package_id = request.POST.get('package')  # Get selected package
+#         pax = int(request.POST.get('pax', 1))  # Get pax count, default to 1
+
+#         # Calculate total amount
+#         total_amount = 0
+#         if activities:
+#             selected_activities = Activity.objects.filter(id__in=activities)
+#             for activity in selected_activities:
+#                 total_amount += activity.price_per_person * pax
+
+#         if package_id:
+#             package = get_object_or_404(Package, id=package_id)
+#             total_amount += package.price_per_person * pax
+
+#         # Create and save booking
+#         booking = Bookings.objects.create(
+#             user=user,
+#             total_amount=total_amount
+#         )
+#         booking.activities.set(selected_activities)
+#         if package_id:
+#             booking.package = package
+#             booking.save()
+
+#         messages.success(request, f"Booking successful! Total amount: ${total_amount}")
+#         return redirect('user_bookings')
+
+#     return render(request, 'book_activity.html')
+
+# # View User's Bookings
+# # @login_required
+# def user_bookings(request):
+#     bookings = Booking.objects.filter(user=request.user)  # Show only logged-in user's bookings
+#     return render(request, 'user_bookings.html', {'bookings': bookings})
+# #@login_required
+# def bookings(request):
+#     bookings = Booking.objects.all()
+#     return render(request, 'bookings.html', {'bookings': bookings})
+
+# # @login_required
+# def cancel_booking(request, booking_id):
+#     booking = get_object_or_404(Bookings, id=booking_id, user=request.user)
+#     if request.method == 'POST':
+#         booking.delete()
+#         messages.success(request, "Booking cancelled successfully.")
+#         return redirect('user_bookings')
+#     return render(request, 'cancel_booking.html', {'booking': booking})

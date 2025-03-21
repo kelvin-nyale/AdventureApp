@@ -7,12 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>services</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <style>
+        .content{
+            gap: 10px;
+            padding-top: 90px;
+        }
+        tbody tr td a{
+            text-decoration: none;
+            color: #fff; 
+            background-color: #00f;
+            padding: 7px;
+            border-radius: 5px;
+            
+        }
+        .links{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: large;
+            font-weight: bold;
+            padding: 20px;
+
+            .back{
+                
+                a{
+                    text-decoration: none;
+                    color: #fff; 
+                    background-color: teal;
+                    padding: 20px;
+                    border: 1px solid #fff;
+                    border-radius: 5px;
+                }
+            }
+            .adding{
+
+                a{
+                    text-decoration: none;
+                    color: #fff; 
+                    background-color: #00f;
+                    padding: 20px;
+                    border: 1px solid #fff;
+                    border-radius: 5px;
+                }
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="navbar">
         <div class="logo">
-          <img src="" alt="Logo Img">
-          <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div>
+          <img src="{% static 'images/EpicTrail.png' %}" alt="Logo Img"> 
+          <!-- <div class="logo-name">EPIC TRAIL  <span>ADVENTURES</span></div> -->
         </div>
         <div class="nav-links">
           <ul>
@@ -20,6 +67,7 @@
             <li><a href="{% url 'services' %}">Services</a></li>
             <li><a href="{% url 'activities' %}">Activities</a></li>
             <li><a href="{% url 'packages' %}">Packages</a></li>
+            <li><a href="{% url 'rooms' %}">Rooms</a></li>
             <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
           </ul>
         </div>
@@ -27,7 +75,7 @@
     
     <div class="content">
         <div class="table">
-            <table>
+            <table border="1">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -53,6 +101,10 @@
 
         </div>
     </div><br><br>
-    <a href="{% url 'add_service' %}" class="adding">Add New Service</a><br><br><br>
+    <div class="links">
+        <div class="back"><a href="{% url 'admin_dashboard' %}" class="back">Back To Dashbaord </a></div>
+        <div class="adding"><a href="{% url 'add_service' %}" class="adding">Add New Service</a></div>
+    </div>
+    
 </body>
 </html>

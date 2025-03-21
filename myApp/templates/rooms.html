@@ -1,25 +1,27 @@
-
-{% load  static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Packages</title>
+    <title>Room List</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
         .content{
             gap: 10px;
             padding-top: 90px;
         }
+
         tbody tr td a{
             text-decoration: none;
             color: #fff; 
             background-color: #00f;
             padding: 7px;
+            border: 1px solid #fff;
             border-radius: 5px;
             
         }
+
         .links{
             display: flex;
             flex-direction: row;
@@ -70,41 +72,40 @@
                 <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
             </ul>
         </div>
-      </div><br>
-    <div class="content">
-        <div class="table">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Package ID</th>
-                        <th>Package Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for package in packages %}
-                    <tr>
-                        <td>{{ package.package_id }}</td>
-                        <td>{{ package.package_name }}</td>
-                        <td>{{ package.description }}</td>
-                        <td>{{ package.price }}</td>
-                        <td>
-                            <a href="{% url 'update_package' package.package_id %}" class="update">Update</a>
-                            <a href="{% url 'delete_package' package.package_id %}" class="delete">Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-        </div>
-    </div><br><br>
+    </div><br>
+   <div class="content">
+    <h2>Room List</h2>
+    <div class="table">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Room ID</th>
+                    <th>Room Number</th>
+                    <th>Room Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                <tr>
+                    <td>{{ room.room_id }}</td>
+                    <td>{{ room.room_number }}</td>
+                    <td>{{ room.room_name }}</td>
+                    <td>
+                        <a href="{% url 'update_room' room.room_id %}" class="update">Update</a> 
+                        <a href="{% url 'delete_room' room.room_id %}" class="delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
     <div class="links">
         <div class="back"><a href="{% url 'admin_dashboard' %}" class="back">Back To Dashboard</a></div>
-        <div class="adding"><a href="{% url 'add_package' %}" class="adding">Add New Package</a></div>
+        <div class="adding"><a href="{% url 'add_room' %}" class="adding">Add New Room</a></div>
     </div>
+   </div>
     
 </body>
 </html>
